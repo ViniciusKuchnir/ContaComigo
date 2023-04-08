@@ -1,0 +1,71 @@
+// Schema file
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        Int      @id @default(autoincrement())
+  name      String   @db.VarChar(30)
+  surname   String   @db.VarChar(60)
+  email     String   @unique @db.VarChar(90)
+  password  String   @db.VarChar(255)
+  createdAt DateTime @default(now())
+  Goal      Goal[]
+  Bill      Bill[]
+
+  @@map("users")
+}
+
+model Goal {
+  id        Int      @id @default(autoincrement())
+  user_id   Int
+  goal      String   @db.VarChar(50)
+  date      DateTime? @db.Date
+  completed Boolean  @default(false) @db.Bit(1)
+  createdAt DateTime @default(now())
+  user      User     @relation(fields: [user_id], references: [id])
+
+  @@map("goals")
+}
+
+model Status {
+  id        Int      @id @default(autoincrement())
+  status    String   @db.VarChar(20)
+  createdAt DateTime @default(now())
+  Bill      Bill[]
+
+  @@map("status")
+}
+
+model Type_Bill {
+  id        Int      @id @default(autoincrement())
+  type      String   @db.VarChar(30)
+  createdAt DateTime @default(now())
+  Bill      Bill[]
+
+  @@map("types_bill")
+}
+
+model Bill {
+  id               Int       @id @default(autoincrement())
+  user_id          Int
+  status_id        Int
+  type_bill_id     Int
+  name             String    @db.VarChar(35)
+  beneficiary_name String    @db.VarChar(100)
+  expiration       DateTime?  @db.DateTime()
+  amount           Decimal   @db.Decimal(10,2)
+  comments         String?    @db.VarChar(255)
+  createdAt        DateTime  @default(now())
+  user             User      @relation(fields: [user_id], references: [id])
+  status           Status    @relation(fields: [status_id], references: [id])
+  type_bill        Type_Bill @relation(fields: [type_bill_id], references: [id])
+
+  @@map("bills")
+}
