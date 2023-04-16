@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import GlobalStyle from './styles/global';
-import Login from "./views/Login";
+import Cadastro from "./views/Cadastro";
 import { ThemeProvider } from "styled-components";
 import { Theme } from "./types/theme";
 import { ThemeContext } from "./contexts/theme";
@@ -13,7 +13,7 @@ const App = () => {
   return (
     <div className="App">
       <ThemeProvider theme={theme === 'light' ? lightTheme : darkTheme }>
-        <Login />
+        <Cadastro />
         <GlobalStyle />
       </ThemeProvider>
     </div>
