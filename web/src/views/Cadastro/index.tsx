@@ -72,7 +72,7 @@ const Cadastro = () => {
             </div>
 
             <C.Card>
-              <i>I'm impressed with this plataform I've seen since starting to use this product, I started to control my money better.</i>
+              <i>I am impressed with this platform that I saw, since I started using this product I started to control my money better.</i>
               <C.Avatar>
                 <img src={testimonial1} alt="User perfil testimonial" />
                 <C.DataAvatar>
