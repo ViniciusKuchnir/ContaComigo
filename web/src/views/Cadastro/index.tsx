@@ -12,6 +12,8 @@ import officeIcon from '../../assets/images/office.png';
 import appleIcon from '../../assets/images/apple.png';
 import facebookIcon from '../../assets/images/facebook.png';
 import twitterIcon from '../../assets/images/twitter.png';
+import TertiaryButton from '../../components/Buttons/Social/Tertiary';
+import { useNavigate } from 'react-router-dom';
 
 const createUserFormSchema = z
   .object({
@@ -49,6 +51,8 @@ type CreateUserFormData = z.infer<typeof createUserFormSchema>;
 
 
 const Cadastro = () => {
+
+  const navigate = useNavigate();
 
   const { 
     register, 
@@ -163,7 +167,14 @@ const Cadastro = () => {
                 error={errors.confirmPassword && errors.confirmPassword.message}
               />
             </div>
-            <PrimaryButton type='submit' onClick={() => {}} >Create account</PrimaryButton>
+            <C.Buttons>
+              <PrimaryButton type='submit'>
+                Create account
+              </PrimaryButton>
+              <TertiaryButton onClick={() => navigate('/signin')} label='Already have an account?'>
+                Login
+              </TertiaryButton>
+            </C.Buttons>
          </C.Form>
     </C.Container>
   )

@@ -3,7 +3,7 @@ import * as C from './styles';
 
 interface IButton extends InputHTMLAttributes<HTMLInputElement>{
     type: 'button' | 'reset' | 'submit';
-    onClick: () => void;
+    onClick?: () => void;
 }
 
 const PrimaryButton = ({children, type, onClick}: IButton) => {

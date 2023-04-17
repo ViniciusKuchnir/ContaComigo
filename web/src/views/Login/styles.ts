@@ -1,10 +1,31 @@
 import styled from "styled-components";
 
-export const Container = styled.main`
+export const Container = styled.div`
     width: 100vw;
     height: 100vh;
     padding: ${({theme}) => theme.size.medium};
     display: flex;
+    align-items: center;
+`;
+
+export const Form = styled.form`
+    width: 80%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    padding: ${({theme}) => theme.size.big };
+
+    
+    @media (max-width: 425px) {
+        width: 100%;
+    }
+`;
+
+export const Buttons = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     align-items: center;
 `;
 
@@ -86,21 +107,7 @@ export const DataAvatar = styled.div`
     }
 `;
 
-export const Form = styled.form`
-    width: 80%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    padding: ${({theme}) => theme.size.big };
-
-    
-    @media (max-width: 425px) {
-        width: 100%;
-    }
-`;
-
-export const MessageSignUp = styled.div`
+export const MessageSignIn = styled.div`
     p{
         font-size: 1.2rem;
         color: ${({theme}) => theme.gray};
@@ -125,16 +132,4 @@ export const Line = styled.div`
         height: 1px;
         border: 1px solid ${({theme}) => theme.gray};
     }
-`;
-
-export const InputsName = styled.div`
-    display: flex;
-    gap: ${({theme}) => theme.size.big};
-`;
-
-export const Buttons = styled.div`
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
 `;

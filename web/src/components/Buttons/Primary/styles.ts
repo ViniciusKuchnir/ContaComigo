@@ -5,6 +5,7 @@ export const Button = styled.button`
     width: 100%;
     padding-left: 1rem;
     padding-right: 1rem;
+    margin-bottom: ${({theme}) => theme.size.big};
     border-radius: ${({theme}) => theme.size.small};
     border: none;
     background-color: ${({theme}) => theme.purple};

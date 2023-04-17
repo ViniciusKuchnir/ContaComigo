@@ -5,6 +5,7 @@ import { ThemeProvider } from "styled-components";
 import { Theme } from "./types/theme";
 import { ThemeContext } from "./contexts/theme";
 import { darkTheme, lightTheme } from "./styles/themes";
+import RouteNavigators from "./routes";
 
 const App = () => {
 
@@ -13,7 +14,7 @@ const App = () => {
   return (
     <div className="App">
       <ThemeProvider theme={theme === 'light' ? lightTheme : darkTheme }>
-        <Cadastro />
+        <RouteNavigators />
         <GlobalStyle />
       </ThemeProvider>
     </div>
