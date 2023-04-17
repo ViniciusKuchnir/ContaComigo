@@ -1,6 +1,10 @@
 import styled from "styled-components";
 
-export const Button = styled.button`
+type Button = {
+    loading: number
+}
+
+export const Button = styled.button<Button>`
     height: 36px;
     width: 100%;
     padding-left: 1rem;
@@ -8,15 +12,15 @@ export const Button = styled.button`
     margin-bottom: ${({theme}) => theme.size.big};
     border-radius: ${({theme}) => theme.size.small};
     border: none;
-    background-color: ${({theme}) => theme.purple};
+    background-color: ${p => p.loading ? p.theme.gray : p.theme.purple};
     color: ${({theme}) => theme.white};
     font-size: 1rem;
     letter-spacing: 1px;
-    cursor: pointer;
+    cursor: ${p => p.loading ? 'progress' : 'pointer'};
     transition: .2s;
 
     &:hover{
-        background-color: ${({theme}) => theme.purpleDark};
+        background-color: ${p => p.loading ? p.theme.gray : p.theme.purpleDark};
     }
     
 

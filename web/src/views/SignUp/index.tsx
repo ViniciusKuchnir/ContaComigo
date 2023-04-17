@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import * as C from './styles';
 import TextField from '../../components/Form/TextField';
 import testimonial1 from '../../assets/images/testimonial1.jpg'
@@ -14,6 +14,8 @@ import facebookIcon from '../../assets/images/facebook.png';
 import twitterIcon from '../../assets/images/twitter.png';
 import TertiaryButton from '../../components/Buttons/Social/Tertiary';
 import { useNavigate } from 'react-router-dom';
+import { api } from '../../services/api';
+import { toast } from 'react-toastify';
 
 const createUserFormSchema = z
   .object({
@@ -52,6 +54,8 @@ type CreateUserFormData = z.infer<typeof createUserFormSchema>;
 
 const Cadastro = () => {
 
+  const [loading, setLoading] = useState<boolean>(false);
+
   const navigate = useNavigate();
 
   const { 
@@ -62,8 +66,23 @@ const Cadastro = () => {
     resolver: zodResolver(createUserFormSchema),
   });
 
-  const sendForm = (data: CreateUserFormData) => {
-    console.log(data);
+  const sendForm = async (data: CreateUserFormData) => {
+    setLoading(true);
+    await api.post('/users', {
+      name: data.name,
+      surname: data.surname,
+      email: data.email,
+      password: data.password
+    })
+    .then((result) => {
+      toast.success(result.data);
+    })
+    .catch(({response}) => {
+      toast.error(response.data);
+    })
+    .finally(() => {
+      setLoading(false);
+    })
   }
 
   return (
@@ -168,7 +187,7 @@ const Cadastro = () => {
               />
             </div>
             <C.Buttons>
-              <PrimaryButton type='submit'>
+              <PrimaryButton type='submit' loading={loading}>
                 Create account
               </PrimaryButton>
               <TertiaryButton onClick={() => navigate('/signin')} label='Already have an account?'>
