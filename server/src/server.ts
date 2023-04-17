@@ -1,13 +1,15 @@
-interface User {
-    name: string
-    age: number
-}
+import express from 'express';
+import cors from 'cors';
+import { router as routerUsers } from './routes/users';
 
-function showUser(user: User){
-    console.log(user);
-}
+const PORT = process.env.PORT || 3333;
 
-showUser({
-    name: 'ContaComigo',
-    age: 10
-})
+const app = express();
+
+app.use(cors());
+app.use(express.json());
+app.use(routerUsers);
+
+app.listen(PORT, () => {
+    console.log(`Servidor rodando na porta ${PORT}`);
+});
