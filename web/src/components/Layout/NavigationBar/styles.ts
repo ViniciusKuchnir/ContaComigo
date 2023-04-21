@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 export const Container = styled.aside`
     width: max-content;
@@ -13,7 +14,7 @@ export const Container = styled.aside`
     font-size: 1.7rem;
 `;
 
-export const Tooltip = styled.div`
+export const Tooltip = styled(Link)`
     position: relative;
     display: flex;
     align-items: baseline;

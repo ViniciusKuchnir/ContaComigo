@@ -10,4 +10,5 @@ export type ContextUser = {
     user: User,
     SignIn: (email:string, password:string) => void;
     signed: boolean;
+    SignOut: () => void;
 }

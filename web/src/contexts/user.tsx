@@ -2,6 +2,7 @@ import { createContext, useEffect, useState } from "react";
 import { ContextUser } from "../types/user";
 import { api } from "../services/api";
 import { toast } from "react-toastify";
+import { Navigate } from "react-router-dom";
 
 type Props = {
     children: React.ReactNode
@@ -35,10 +36,16 @@ export const UserProvider = ({children}: Props) => {
             toast.error(response.data);
         });
 
-    }  
+    } 
+    
+    const SignOut = () => {
+        localStorage.removeItem('@AuthUser:user');
+        setUser(null);
+        return <Navigate to='/signin' />
+    } 
 
     return (
-        <UserContext.Provider value={{user, signed: !!user, SignIn}}>
+        <UserContext.Provider value={{user, signed: !!user, SignIn, SignOut}}>
             {children}
         </UserContext.Provider>
     )
