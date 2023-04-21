@@ -1,5 +1,5 @@
 import { createContext, useEffect, useState } from "react";
-import { User } from "../types/user";
+import { ContextUser } from "../types/user";
 import { api } from "../services/api";
 import { toast } from "react-toastify";
 
@@ -7,7 +7,7 @@ type Props = {
     children: React.ReactNode
 }
 
-export const UserContext = createContext<User | {}>({});
+export const UserContext = createContext<ContextUser | {}>({});
 
 export const UserProvider = ({children}: Props) => {
     const [user, setUser] = useState<any>(null);
@@ -29,7 +29,7 @@ export const UserProvider = ({children}: Props) => {
         })
         .then(({data}) => {
             setUser(data);
-            localStorage.setItem('@AuthUser:user', JSON.stringify(user));
+            localStorage.setItem('@AuthUser:user', JSON.stringify(data));
         })
         .catch(({response}) => {
             toast.error(response.data);
