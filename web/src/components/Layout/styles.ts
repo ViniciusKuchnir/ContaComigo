@@ -12,3 +12,10 @@ export const Container = styled.div`
         border-radius: ${({theme}) => theme.size.medium};
     }
 `;
+
+export const Head = styled.div`
+    span{
+        color: ${({theme}) => theme.gray};
+        letter-spacing: 1px;
+    }
+`;
