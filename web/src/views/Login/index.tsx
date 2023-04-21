@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useContext } from 'react'
 import * as C from './styles';
 import testimonial2 from '../../assets/images/testimonail2.jpg';
 import SocialButton from '../../components/Buttons/Social';
@@ -13,7 +13,9 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import PrimaryButton from '../../components/Buttons/Primary';
 import TertiaryButton from '../../components/Buttons/Social/Tertiary';
-import { useNavigate } from 'react-router-dom';
+import { Navigate, useNavigate } from 'react-router-dom';
+import { UserContext } from '../../contexts/user';
+import { User } from '../../types/user';
 
 const loginUserFormSchema = z.object({
     email: z.string().email('Invalid email').nonempty('Email is required'),
@@ -26,6 +28,9 @@ type LoginUserFormData = z.infer<typeof loginUserFormSchema>;
 
 const Login = () => {
 
+  const {SignIn, signed} = useContext(UserContext) as User;
+
+
   const navigate = useNavigate();
 
     const {
@@ -37,7 +42,11 @@ const Login = () => {
     });
 
     const sendForm = (data: LoginUserFormData) => {
-        console.log(data);
+      SignIn(data.email, data.password);
+    }
+
+    if(signed){
+      return <Navigate to='/dashboard' />
     }
 
   return (
@@ -91,7 +100,7 @@ const Login = () => {
                 />
             </div>
             <C.Buttons>
-              <PrimaryButton type='submit'>
+              <PrimaryButton type='submit' loading={false}>
                   Login
               </PrimaryButton>
               <TertiaryButton onClick={() => navigate('/signup')} label="Don't have an account yet?">

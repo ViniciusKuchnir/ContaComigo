@@ -16,8 +16,8 @@ const App = () => {
     <div className="App">
       <ThemeProvider theme={theme === 'light' ? lightTheme : darkTheme }>
         <Toast />
-        <GlobalStyle />
         <RouteNavigators />
+        <GlobalStyle />
       </ThemeProvider>
     </div>
   )

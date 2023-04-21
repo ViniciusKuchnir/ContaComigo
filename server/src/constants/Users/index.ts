@@ -13,8 +13,12 @@ const MessagesUser: IMessages = {
         message: 'User deleted successfully',
         code: 204
     },
+    found:{
+        message: 'User found successfully',
+        code: 200
+    },
     error: {
-        message: 'User cannot be created',
+        message: 'There was a user error',
         code: 400
     },
     alreadyExist: {
@@ -22,7 +26,7 @@ const MessagesUser: IMessages = {
          code: 409
     },
     notFound: {
-        message: 'User not found',
+        message: 'Incorrect username or password',
         code: 404
     }
 }

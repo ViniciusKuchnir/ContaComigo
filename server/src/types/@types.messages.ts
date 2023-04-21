@@ -7,6 +7,10 @@ interface IMessages {
         message: string;
         code: 400 
     };
+    found:{
+        message: string;
+        code: 200
+    };
     edited: {
         message: string;
         code: 200
