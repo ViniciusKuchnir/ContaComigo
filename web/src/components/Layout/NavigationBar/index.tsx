@@ -25,7 +25,7 @@ const NavigationBar = () => {
             <MdOutlineDashboard />
             <span>Dashboard</span>
         </C.Tooltip>
-        <C.Tooltip to='#'>
+        <C.Tooltip to='/bills-to-pay'>
             <MdOutlineWallet />
             <span>Bills to pay</span>
         </C.Tooltip>

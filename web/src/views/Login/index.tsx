@@ -12,10 +12,10 @@ import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import PrimaryButton from '../../components/Buttons/Primary';
-import TertiaryButton from '../../components/Buttons/Social/Tertiary';
+import TertiaryButton from '../../components/Buttons/Tertiary';
 import { Navigate, useNavigate } from 'react-router-dom';
 import { UserContext } from '../../contexts/user';
-import { User } from '../../types/user';
+import { ContextUser } from '../../types/user';
 
 const loginUserFormSchema = z.object({
     email: z.string().email('Invalid email').nonempty('Email is required'),
@@ -28,7 +28,7 @@ type LoginUserFormData = z.infer<typeof loginUserFormSchema>;
 
 const Login = () => {
 
-  const {SignIn, signed} = useContext(UserContext) as User;
+  const {SignIn, signed} = useContext(UserContext) as ContextUser;
 
 
   const navigate = useNavigate();

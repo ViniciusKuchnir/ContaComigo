@@ -12,7 +12,7 @@ import officeIcon from '../../assets/images/office.png';
 import appleIcon from '../../assets/images/apple.png';
 import facebookIcon from '../../assets/images/facebook.png';
 import twitterIcon from '../../assets/images/twitter.png';
-import TertiaryButton from '../../components/Buttons/Social/Tertiary';
+import TertiaryButton from '../../components/Buttons/Tertiary';
 import { useNavigate } from 'react-router-dom';
 import { api } from '../../services/api';
 import { toast } from 'react-toastify';
