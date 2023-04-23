@@ -19,6 +19,7 @@ export const Container = styled.div`
     top: 0;
     right: 0;
     bottom: 0;
+    z-index: 2;
     background-color: rgba(0, 0, 0, 0.5);
     display: flex;
     align-items: center;

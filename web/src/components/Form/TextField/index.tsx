@@ -3,15 +3,16 @@ import * as C from './styles';
 import { UseFormRegisterReturn } from 'react-hook-form';
 
 interface IInput extends InputHTMLAttributes<HTMLInputElement>{
-    type: 'text' | 'email' | 'password';
+    type: 'text' | 'email' | 'password' | 'date' | 'number';
     placeholder: string;
     label: string;
     error: string | undefined;
     register: UseFormRegisterReturn;
     required: boolean;
+    step?: string;
 }
 
-const TextField = ({id, type, label, placeholder, required, register, error}: IInput) => {
+const TextField = ({id, type, label, placeholder, required, register, step, error}: IInput) => {
   return (
     <C.Container>
         <C.Label htmlFor={id} >{label} {!required && <span>(Optional)</span>}</C.Label>
@@ -20,6 +21,7 @@ const TextField = ({id, type, label, placeholder, required, register, error}: II
             type={type} 
             placeholder={placeholder}
             {...register}
+            step={step && step}
         />
         {error && <C.Error>{error}</C.Error>}
     </C.Container>
