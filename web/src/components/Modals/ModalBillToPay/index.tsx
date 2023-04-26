@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import * as C from './styles';
 import GenericModal from '../GenericModal'
 import {useForm} from 'react-hook-form';
@@ -8,6 +8,11 @@ import TextField from '../../Form/TextField';
 import Textarea from '../../Form/Textarea';
 import SecondaryButton from '../../Buttons/Secondary';
 import PrimaryButton from '../../Buttons/Primary';
+import Select from '../../Form/Select';
+import { AccountTypes } from '../../../types/accountTypes';
+import { api } from '../../../services/api';
+import { toast } from 'react-toastify';
+import { Options } from '../../../types/OptionSelect';
 
 type Props = {
   showModal: boolean;
@@ -21,6 +26,10 @@ const billToPayFormSchema = z.object({
   beneficiary_name: z.string()
   .nonempty('Beneficiary name required')
   .max(100, 'Beneficiary name must contain a maximum of 100 characters'),
+  type_bill: z.string()
+  .nonempty('Chose a account type')
+  .transform(value => Number.parseInt(value))
+  ,
   expiration: z.string()
   .transform(date => {
     if(date === ""){
@@ -52,6 +61,8 @@ const billToPayFormSchema = z.object({
 type BillToPayFormData = z.infer<typeof billToPayFormSchema>;
 
 const ModalBillToPay = ({showModal, setShowModal}: Props) => {
+
+  const [accountTypes, setAccountTypes] = useState<[] | Options[]>([]);
   
   const {
     register, 
@@ -61,11 +72,27 @@ const ModalBillToPay = ({showModal, setShowModal}: Props) => {
     resolver: zodResolver(billToPayFormSchema)
   });
 
+  useEffect(() => { //Search Account Types
+    api.get('/account-types')
+    .then(({data}) => {
+      const accountTypesTransformed = data.map(({id, type}: AccountTypes) => {
+        return {
+          value: id,
+          label: type
+        }
+      });
+      console.log(accountTypesTransformed);
+      setAccountTypes(accountTypesTransformed)
+    }).catch((error) => {
+      toast.error(error);
+    })
+  }, [])
+
   const currentDate = `${new Date().getFullYear()}/${new Date().getMonth().toString().padStart(2, '0')}/${new Date().getDate().toString().padStart(2, '0')}`
   
   const sendForm = (data: BillToPayFormData) => {
     console.log(data);
-  }
+  } 
 
   return (
     <GenericModal title='Add Bill to pay' showModal={showModal} setShowModal={() => setShowModal(!showModal)}>
@@ -87,6 +114,15 @@ const ModalBillToPay = ({showModal, setShowModal}: Props) => {
           required={true}
           register={register('beneficiary_name')}
           error={errors.beneficiary_name && errors.beneficiary_name.message}
+        />
+        <Select 
+          id='type-bill'
+          options={accountTypes}
+          label='Type bill'
+          placeholder='Chose type bill'
+          error={errors.type_bill  && errors.type_bill.message}
+          register={register('type_bill')}
+          required={true}
         />
         <TextField 
           id='expiration-date'
