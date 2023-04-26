@@ -4,7 +4,7 @@
 
 ---
 
-<p>Trabalho apresentado como requisito para a Disciplina de <b>Gestão de Projetos de TI</b>, do curso de Bacharelado em Engenharia de Software (BSE) e em Sistemas de Informação (BSI), da PUC/PR.</p>
+<p>Trabalho apresentado como requisito para a Disciplina de <b>Gestão de Projetos de TI</b>, do curso de Bacharelado em Engenharia de Software (BES) e em Sistemas de Informação (BSI), da PUC/PR.</p>
 
 <ul>
     <li>
