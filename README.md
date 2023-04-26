@@ -10,9 +10,9 @@
     <li>
         <b>Acadêmicos:</b> 
         <ul>
-          <li><a href="">Juliane Valiati Maran</a></li>
+          <li><a href="https://github.com/JulianeMaran32">Juliane Valiati Maran</a></li>
           <li><a href="">Thierry Prado Guimarães</a></li>
-          <li><a href="">Vinícius Kuchnir Rodrigues Pinto</a></li>
+          <li><a href="https://github.com/ViniciusKuchnir">Vinícius Kuchnir Rodrigues Pinto</a></li>
         </ul>
     </li>
     <li>
