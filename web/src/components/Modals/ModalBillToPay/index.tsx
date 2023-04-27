@@ -13,6 +13,8 @@ import { AccountTypes } from '../../../types/accountTypes';
 import { api } from '../../../services/api';
 import { toast } from 'react-toastify';
 import { Options } from '../../../types/OptionSelect';
+import { getUser } from '../../../libs/user'
+import { User } from '../../../types/user';
 
 type Props = {
   showModal: boolean;
@@ -37,7 +39,7 @@ const billToPayFormSchema = z.object({
     }
     return date
   })
-  .optional(),
+  .nullable(),
   amount: z.string()
   .refine(value => { // Checks if amount has two decimal places
     const regex = /^\d+(\.\d{1,2})?$/;
@@ -55,13 +57,14 @@ const billToPayFormSchema = z.object({
     }
     return value
   })
-  .optional()
+  .nullable()
 });
 
 type BillToPayFormData = z.infer<typeof billToPayFormSchema>;
 
 const ModalBillToPay = ({showModal, setShowModal}: Props) => {
 
+  const user = getUser() as User;
   const [accountTypes, setAccountTypes] = useState<[] | Options[]>([]);
   
   const {
@@ -81,7 +84,6 @@ const ModalBillToPay = ({showModal, setShowModal}: Props) => {
           label: type
         }
       });
-      console.log(accountTypesTransformed);
       setAccountTypes(accountTypesTransformed)
     }).catch((error) => {
       toast.error(error);
@@ -90,8 +92,17 @@ const ModalBillToPay = ({showModal, setShowModal}: Props) => {
 
   const currentDate = `${new Date().getFullYear()}/${new Date().getMonth().toString().padStart(2, '0')}/${new Date().getDate().toString().padStart(2, '0')}`
   
-  const sendForm = (data: BillToPayFormData) => {
-    console.log(data);
+  const sendForm = async (data: BillToPayFormData) => {
+    await api.post('/accounts', {
+      user_id: user.id,
+	    status_id: 2,
+	    type_bill_id: data.type_bill,
+	    name: data.name,
+	    beneficiary_name: data.beneficiary_name,
+	    expiration: data.expiration,
+	    ammount: data.amount,
+	    comments: data.comments
+    });
   } 
 
   return (
