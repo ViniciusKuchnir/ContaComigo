@@ -15,6 +15,7 @@ export const Container = styled.div`
 `;
 
 export const Head = styled.div`
+    margin-bottom: ${({theme}) => theme.size.big};
     span{
         color: ${({theme}) => theme.gray};
         letter-spacing: 1px;
