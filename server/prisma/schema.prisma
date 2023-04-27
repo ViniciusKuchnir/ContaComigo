@@ -23,13 +23,13 @@ model User {
 }
 
 model Goal {
-  id        Int      @id @default(autoincrement())
+  id        Int       @id @default(autoincrement())
   user_id   Int
-  goal      String   @db.VarChar(50)
+  goal      String    @db.VarChar(50)
   date      DateTime? @db.Date
-  completed Boolean  @default(false) @db.Bit(1)
-  createdAt DateTime @default(now())
-  user      User     @relation(fields: [user_id], references: [id])
+  completed Boolean   @default(false) @db.Bit(1)
+  createdAt DateTime  @default(now())
+  user      User      @relation(fields: [user_id], references: [id])
 
   @@map("goals")
 }
@@ -59,9 +59,9 @@ model Bill {
   type_bill_id     Int
   name             String    @db.VarChar(35)
   beneficiary_name String    @db.VarChar(100)
-  expiration       DateTime?  @db.DateTime()
-  amount           Decimal   @db.Decimal(10,2)
-  comments         String?    @db.VarChar(255)
+  expiration       DateTime? @db.Date()
+  amount           Decimal   @db.Decimal(10, 2)
+  comments         String?   @db.VarChar(255)
   createdAt        DateTime  @default(now())
   user             User      @relation(fields: [user_id], references: [id])
   status           Status    @relation(fields: [status_id], references: [id])
