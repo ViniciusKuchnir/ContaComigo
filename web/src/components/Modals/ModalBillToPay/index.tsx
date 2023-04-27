@@ -102,7 +102,12 @@ const ModalBillToPay = ({showModal, setShowModal}: Props) => {
 	    expiration: data.expiration,
 	    ammount: data.amount,
 	    comments: data.comments
-    });
+    }).then(({data}) => {
+      toast.success(data);
+      setShowModal(false);
+    }).catch((error) => {
+      toast.error(error);
+    })
   } 
 
   return (
