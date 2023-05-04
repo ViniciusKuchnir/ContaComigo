@@ -23,7 +23,10 @@ const BillsToPay = () => {
     .then(({data}) => {
       setAccounts(data);
     })
-  }, [])
+  }, []);
+
+
+  const accountsFiltered = accounts.filter(account => account.name.toUpperCase().includes(search.toUpperCase())); 
 
   return (
     <Layout
@@ -38,9 +41,8 @@ const BillsToPay = () => {
         />
 
       <C.List>
-
         {
-          accounts.map(item => {
+          accountsFiltered.map(item => {
             if (item.status_id === 2) {
               return (
                 <CardAccount 
@@ -59,7 +61,7 @@ const BillsToPay = () => {
         }
 
         
-        </C.List>
+      </C.List>
 
                 
          
