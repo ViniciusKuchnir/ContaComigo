@@ -25,7 +25,7 @@ export const Container = styled.button`
     display: flex;
     align-items: center;
     justify-content: center;
-    position: absolute;
+    position: fixed;
     z-index: 2;
     right: 2%;
     bottom: 4%;
