@@ -10,16 +10,16 @@ type Props = {
 
 const Layout = ({children,title, subtitle}: Props) => {
   return (
-    <C.Container>
+    <>
         <NavigationBar />
-        <main>
+        <C.Main>
           <C.Head>
             <h1>{title}</h1>
             <span>{subtitle}</span>
           </C.Head>
           {children}
-        </main>
-    </C.Container>
+        </C.Main>
+    </>
   )
 }
 

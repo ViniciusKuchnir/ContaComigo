@@ -10,49 +10,46 @@ import {
     MdOutlineSupportAgent,
     MdOutlineExitToApp
 } from 'react-icons/md';
-import { getUser } from '../../../libs/user';
 import { ContextUser, User } from '../../../types/user';
 import { UserContext } from '../../../contexts/user';
 
 const NavigationBar = () => {
-
-    const user = getUser() as User;
     const {SignOut} = useContext(UserContext) as ContextUser;
 
   return (
     <C.Container>
-        <C.Tooltip to='/dashboard'>
+        <C.ItemMenu to='/dashboard'>
             <MdOutlineDashboard />
             <span>Dashboard</span>
-        </C.Tooltip>
-        <C.Tooltip to='/bills-to-pay'>
+        </C.ItemMenu>
+        <C.ItemMenu to='/bills-to-pay'>
             <MdOutlineWallet />
             <span>Bills to pay</span>
-        </C.Tooltip>
-        <C.Tooltip to='#'>
+        </C.ItemMenu>
+        <C.ItemMenu to='#'>
             <MdOutlineAttachMoney />
             <span>Bills to receive</span>
-        </C.Tooltip>
-        <C.Tooltip to='#'>
+        </C.ItemMenu>
+        <C.ItemMenu to='#'>
             <MdPlaylistAddCheck />
             <span>Goals</span>
-        </C.Tooltip>
-        <C.Tooltip to='#'>
+        </C.ItemMenu>
+        <C.ItemMenu to='#'>
             <MdSettings />
             <span>Settings</span>
-        </C.Tooltip>
-        <C.Tooltip to='#'>
+        </C.ItemMenu>
+        <C.ItemMenu to='#'>
             <MdOutlinePerson />
-            <span>Perfil: {user.name} {user.surname}</span>
-        </C.Tooltip>
-        <C.Tooltip to='#'>
+            <span>Perfil</span>
+        </C.ItemMenu>
+        <C.ItemMenu to='#'>
             <MdOutlineSupportAgent />
             <span>Support</span>
-        </C.Tooltip>
-        <C.Tooltip onClick={() => SignOut()} to='#'>
+        </C.ItemMenu>
+        <C.ItemMenu onClick={() => SignOut()} to='#'>
             <MdOutlineExitToApp />
             <span>Exit</span>
-        </C.Tooltip>
+        </C.ItemMenu>
         
     </C.Container>
   )

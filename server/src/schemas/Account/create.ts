@@ -11,7 +11,7 @@ const createAccountSchema = z.object({
     .nonempty('Beneficiary name required')
     .max(100, 'Beneficiary name must contain a maximum of 100 characters'),
     expiration: z.string().nullable(),
-    ammount: z.number().positive(),
+    amount: z.number().positive(),
     comments: z.string()
     .max(255, 'Comments must contain a maximum of 255 characters')
     .nullable()

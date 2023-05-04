@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import { createAccountSchema } from "../../schemas/Account/create";
 import { z } from "zod";
 import { prisma } from "../../database/prismaCliente";
-import { MessageBills } from "../../constants/Accounts";
+import { MessageAccounts } from "../../constants/Accounts";
 import { serverMessages } from "../../constants/Server";
 import { formatDate } from "../../libs/Date";
 
@@ -22,15 +22,15 @@ const create = async (req: Request, res: Response): Promise<Response> => {
                      name: bill.name,
                      beneficiary_name: bill.beneficiary_name,
                      expiration: formatDate(bill.expiration),
-                     amount: bill.ammount,
+                     amount: bill.amount,
                      comments: bill.comments
                  }
              })
             ]);
 
            return res
-           .status(MessageBills.created.code)
-           .send(MessageBills.created.message);
+           .status(MessageAccounts.created.code)
+           .send(MessageAccounts.created.message);
 
         } catch (error) {
             console.log(error);
@@ -41,8 +41,8 @@ const create = async (req: Request, res: Response): Promise<Response> => {
     } catch (error) {
         console.log(error);
         return res
-        .status(MessageBills.error.code)
-        .send(MessageBills.error.message);
+        .status(MessageAccounts.error.code)
+        .send(MessageAccounts.error.message);
     }
 }
 

@@ -1,6 +1,6 @@
 import { IMessages } from "../../types/@types.messages";
 
-const MessageBills: IMessages = {
+const MessageAccounts: IMessages = {
     created: {
         message: 'Account created successfully',
         code: 201
@@ -31,4 +31,4 @@ const MessageBills: IMessages = {
     }
 }
 
-export {MessageBills}
+export {MessageAccounts}

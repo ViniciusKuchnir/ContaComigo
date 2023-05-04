@@ -9,10 +9,6 @@ export default createGlobalStyle`
         font-family: 'Poppins', sans-serif;
     }
 
-    html, body, #root{
-        height: 100%;
-    }
-
     body{
         background: ${({theme}) => theme.background};
         color: ${({theme}) => theme.text};

@@ -100,7 +100,7 @@ const ModalBillToPay = ({showModal, setShowModal}: Props) => {
 	    name: data.name,
 	    beneficiary_name: data.beneficiary_name,
 	    expiration: data.expiration,
-	    ammount: data.amount,
+	    amount: data.amount,
 	    comments: data.comments
     }).then(({data}) => {
       toast.success(data);
