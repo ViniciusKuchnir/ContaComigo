@@ -10,36 +10,32 @@ import { getUser } from '../../libs/user';
 import { User } from '../../types/user';
 import { Accounts } from '../../types/account';
 import CardAccount from '../../components/Cards/Account';
+import Spin from '../../components/Spin';
 
 const BillsToPay = () => {
   const [showModal, setShowModal] = useState<boolean>(false);
   const [search, setSearch] = useState<string>('');
   const [accounts, setAccounts] = useState<[] | Accounts[]>([]);
+  const [loading, setLoading] = useState<boolean>(false);
 
   const user = getUser() as User;
 
   useEffect(() => {
-    api.get(`/accounts/${user.id}`)
+    setLoading(true);
+      api.get(`/accounts/${user.id}`)
     .then(({data}) => {
       setAccounts(data);
+    })
+    .finally(() => {
+      setLoading(false);
     })
   }, []);
 
 
   const accountsFiltered = accounts.filter(account => account.name.toUpperCase().includes(search.toUpperCase())); 
 
-  return (
-    <Layout
-      title='Bills to pay'
-      subtitle='See here your bills to be paid'
-    >
-        <TextSearch 
-          id='search'
-          placeholder='Search account payable'
-          value={search}
-          onChange={(e) => setSearch(e.target.value)}
-        />
-
+  const renderList = (list: Accounts[]) => {
+    return (
       <C.List>
         {
           accountsFiltered.map(item => {
@@ -59,13 +55,30 @@ const BillsToPay = () => {
             }
           })
         }
-
-        
       </C.List>
+    );
+  }
 
-                
-         
-      
+  return (
+    <Layout
+      title='Bills to pay'
+      subtitle='See here your bills to be paid'
+    >
+      <TextSearch 
+        id='search'
+        placeholder='Search account payable'
+        value={search}
+        onChange={(e) => setSearch(e.target.value)}
+      />    
+        
+      {loading ? 
+        <C.Spinner>
+          <Spin />
+        </C.Spinner> 
+      : 
+        renderList(accountsFiltered)
+      }
+
       <FlatButton onClick={() => setShowModal(true)} text='Add Bill' />
       {showModal && <ModalBillToPay showModal={showModal} setShowModal={() => setShowModal(!showModal)} />}
     </Layout>
