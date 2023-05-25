@@ -7,14 +7,16 @@ import { z } from "zod";
 
 const get = async (req: Request, res: Response): Promise<Response> => {
     try {
-        const {userId} = req.params;
+        const {userId, accountId} = req.params;
         try {
            const accounts = await prisma.bill.findMany({
                 include:{
                     type_bill: true
                 },
                 where: {
+                    id: accountId === undefined ? {} : Number.parseInt(accountId),
                     user_id: Number.parseInt(userId)
+                    
                 }
             });
 

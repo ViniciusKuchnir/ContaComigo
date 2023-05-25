@@ -12,7 +12,7 @@ interface IInput extends InputHTMLAttributes<HTMLInputElement>{
     step?: string;
 }
 
-const TextField = ({id, type, label, placeholder, required, register, step, error}: IInput) => {
+const TextField = ({id, type, label, placeholder, required, register, step, error, readOnly}: IInput) => {
   return (
     <C.Container>
         <C.Label htmlFor={id} >{label} {!required && <span>(Optional)</span>}</C.Label>
@@ -22,6 +22,7 @@ const TextField = ({id, type, label, placeholder, required, register, step, erro
             placeholder={placeholder}
             {...register}
             step={step && step}
+            readOnly={readOnly}
         />
         {error && <C.Error>{error}</C.Error>}
     </C.Container>

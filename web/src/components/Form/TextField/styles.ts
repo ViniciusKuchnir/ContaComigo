@@ -22,7 +22,8 @@ export const Input = styled.input`
     width: 100%;
     height: 36px;
     font-size: 1rem;
-    background-color: transparent;
+    background-color: ${(p) => p.readOnly ? '#E9E9E9': 'transparent'};
+    color: ${(p) => p.readOnly ? p.theme.text : p.theme.text};
     padding: ${({theme}) => theme.size.medium};
     margin-bottom: ${({theme}) => theme.size.small};
     border: 2px solid ${({theme}) => theme.purple};

@@ -21,7 +21,7 @@ export const Textarea = styled.textarea`
     height: 60px;
     max-height: 180px;
     font-size: 1rem;
-    background-color: transparent;
+    background-color: ${(p) => p.readOnly ? '#E9E9E9': 'transparent'};
     padding: ${({theme}) => theme.size.medium};
     border: 2px solid ${({theme}) => theme.purple};
     border-radius: ${({theme}) => theme.size.small};

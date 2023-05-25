@@ -11,7 +11,7 @@ interface ITextarea extends TextareaHTMLAttributes<HTMLTextAreaElement>{
     maxLength: number;
 }
 
-const Textarea = ({id, label, placeholder, required, register, maxLength, error}: ITextarea) => {
+const Textarea = ({id, label, placeholder, required, register, maxLength, error, readOnly}: ITextarea) => {
     
     return (
     <C.Container>
@@ -22,6 +22,7 @@ const Textarea = ({id, label, placeholder, required, register, maxLength, error}
             required={required}
             maxLength={maxLength}
             {...register}
+            readOnly={readOnly}
         />
         <C.Error>{error}</C.Error>
     </C.Container>

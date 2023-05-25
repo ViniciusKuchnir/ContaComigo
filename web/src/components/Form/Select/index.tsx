@@ -11,13 +11,14 @@ interface ISelect extends  SelectHTMLAttributes<HTMLSelectElement>{
     error: string | undefined;
     register: UseFormRegisterReturn;
     required: boolean;
+    readOnly?: boolean;
 }
 
-const Select = ({id, options, label, placeholder, error, register, required}: ISelect) => {
+const Select = ({id, options, label, placeholder, error, register, required, readOnly}: ISelect) => {
   return (
     <C.Container>
         <C.Label htmlFor={id} >{label} {!required && <span>(Optional)</span>}</C.Label>
-        <C.Select id={id} placeholder={placeholder} defaultValue='' {...register}>
+        <C.Select id={id} placeholder={placeholder} defaultValue='' {...register} disabled={readOnly} >
             <option value='' disabled hidden>Please Choose...</option>
             {
                 options.map((item) => {
