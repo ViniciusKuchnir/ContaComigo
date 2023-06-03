@@ -2,5 +2,6 @@ import Cadastro from './SignUp';
 import Login from './Login';
 import Dashboard from './Dashboard';
 import BillsPay from './BillsToPay';
+import NotFound from './NotFound';
 
-export {Cadastro, Login, Dashboard, BillsPay}
+export {Cadastro, Login, Dashboard, BillsPay, NotFound};

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
-import { BillsPay, Cadastro, Dashboard, Login } from '../views';
+import { BillsPay, Cadastro, Dashboard, Login, NotFound } from '../views';
 import { BrowserRouter } from 'react-router-dom';
 import PrivateRoutes from './privateRoutes';
 
@@ -15,8 +15,9 @@ const RouteNavigators = () => {
               <Route path='dashboard' element={<Dashboard />} />
               <Route path='bills-to-pay' element={<BillsPay />} />
             </Route>
+            
+            <Route path='*' element={<NotFound />} />
 
-            <Route path='*' element={<h1>NOT FOUND</h1>} />
         </Routes>
     </BrowserRouter>
   )
