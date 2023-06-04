@@ -8,6 +8,7 @@ import { Accounts } from '../../types/account';
 import { getUser } from '../../libs/user';
 import { User } from '../../types/user';
 import { api } from '../../services/api';
+import EmptyListMessage from '../../components/EmptyListMessage';
 
 const BillsToReceive = () => {
 
@@ -77,7 +78,10 @@ const BillsToReceive = () => {
           <Spin />
         </C.Spinner> 
       : 
-        renderList(accountsFiltered)
+        accountsFiltered.length > 0 ? 
+          renderList(accountsFiltered) 
+          : 
+          <EmptyListMessage nameList='Bills To Receive' />
       } 
 
     </Layout>

@@ -11,6 +11,7 @@ import { User } from '../../types/user';
 import { Accounts } from '../../types/account';
 import CardAccount from '../../components/Cards/Account';
 import Spin from '../../components/Spin';
+import EmptyListMessage from '../../components/EmptyListMessage';
 
 const BillsToPay = () => {
   const [showModal, setShowModal] = useState<boolean>(false);
@@ -76,7 +77,10 @@ const BillsToPay = () => {
           <Spin />
         </C.Spinner> 
       : 
-        renderList(accountsFiltered)
+        accountsFiltered.length > 0 ? 
+        renderList(accountsFiltered) 
+        : 
+        <EmptyListMessage nameList='Bills To Pay' />
       }
 
       <FlatButton onClick={() => setShowModal(true)} text='Add Bill' />
