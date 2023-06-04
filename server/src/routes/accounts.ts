@@ -6,7 +6,7 @@ import edit from '../controllers/Accounts/edit';
 const router = express.Router();
 
 router.post('/accounts', create);
-router.get('/accounts/:userId/:accountId?', get);
+router.get('/accounts/:userId/:statusId/:accountId?', get);
 router.patch('/accounts/:accountId', edit);
 
 export {router}

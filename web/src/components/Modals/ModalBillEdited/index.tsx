@@ -20,6 +20,7 @@ type Props = {
     id: number;
     showModal: boolean;
     setShowModal: (state: boolean) => void;
+    typeAccount: number;
 }
   
   const billToPayFormSchema = z.object({
@@ -59,7 +60,8 @@ type Props = {
       }
       return value
     })
-    .nullable()
+    .nullable(),
+    status_id: z.number().positive()
   });
 
 type BillToPayFormData = z.infer<typeof billToPayFormSchema>;
@@ -67,7 +69,7 @@ type BillToPayFormData = z.infer<typeof billToPayFormSchema>;
 const currentDate = `${new Date().getFullYear()}/${new Date().getMonth().toString().padStart(2, '0')}/${new Date().getDate().toString().padStart(2, '0')}`
 
 
-const ModalBillEdited = ({id, setShowModal, showModal}: Props) => {
+const ModalBillEdited = ({id, typeAccount, setShowModal, showModal}: Props) => {
     
     const [accountTypes, setAccountTypes] = useState<[] | Options[]>([]);
     const [edition, setEdition] = useState<boolean>(false);
@@ -99,7 +101,7 @@ const ModalBillEdited = ({id, setShowModal, showModal}: Props) => {
       }, []);
 
       useEffect(() => {
-        api.get(`/accounts/${user.id}/${id}`)
+        api.get(`/accounts/${user.id}/${typeAccount}/${id}`)
         .then(({data}) => {
           setValue('id', data[0].id);
           setValue('name', data[0].name);
@@ -112,22 +114,24 @@ const ModalBillEdited = ({id, setShowModal, showModal}: Props) => {
           }
           setValue('amount', data[0].amount);
           setValue('comments', data[0].comments);
+          setValue('status_id', data[0].status_id)
         })
       }, []);
 
       const sendForm = async (data: BillToPayFormData) => {
-        
         await api.patch(`/accounts/${data.id}`, {
           name: data.name,
           beneficiary_name: data.beneficiary_name,
           type_bill_id: data.type_bill,
           expiration: data.expiration,
           amount: data.amount,
-          comments: data.comments
+          comments: data.comments,
+          status_id: data.status_id
         }).then(response => {
-          console.log(response);
+          toast.success(response.data);
+          setShowModal(false);
         }).catch(error => {
-          console.log(error);
+          toast.error(error);
         })
       }
 

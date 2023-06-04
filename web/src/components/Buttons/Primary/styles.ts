@@ -1,7 +1,8 @@
 import styled from "styled-components";
 
 type Button = {
-    loading: number
+    loading: number;
+    danger?: boolean;
 }
 
 export const Button = styled.button<Button>`
@@ -13,6 +14,7 @@ export const Button = styled.button<Button>`
     border-radius: ${({theme}) => theme.size.small};
     border: none;
     background-color: ${p => p.loading ? p.theme.gray : p.theme.purple};
+    background-color: ${p => p.danger && p.theme.red };
     color: ${({theme}) => theme.white};
     font-size: 1rem;
     letter-spacing: 1px;
@@ -21,6 +23,7 @@ export const Button = styled.button<Button>`
 
     &:hover{
         background-color: ${p => p.loading ? p.theme.gray : p.theme.purpleDark};
+        background-color: ${p => p.danger && p.theme.red };
     }
     
 

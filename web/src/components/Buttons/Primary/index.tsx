@@ -5,11 +5,12 @@ interface IButton extends InputHTMLAttributes<HTMLInputElement>{
     type: 'button' | 'reset' | 'submit';
     onClick?: () => void;
     loading: boolean;
+    danger?:boolean;
 }
 
-const PrimaryButton = ({children, type, onClick, loading}: IButton) => {
+const PrimaryButton = ({children, type, onClick, loading, danger}: IButton) => {
   return (
-    <C.Button type={type} onClick={onClick} loading={+loading} disabled={loading}>
+    <C.Button type={type} onClick={onClick} loading={+loading} disabled={loading} danger={danger}>
         {children}
     </C.Button>
   )

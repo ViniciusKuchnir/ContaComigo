@@ -21,7 +21,20 @@ export const Container = styled.div`
     @media (max-width: 425px) {
         width: 100%;
     }
-`;  
+`; 
+
+export const LabelPaid = styled.button`
+    width: 100%;
+    text-align: end;
+    color: ${({theme}) => theme.purple};
+    border: none;
+    background-color: transparent;
+    font-size: 1rem;
+    text-align: end;
+    cursor: pointer;
+
+`;
+
 
 export const Information = styled.div`
     width: 100%;

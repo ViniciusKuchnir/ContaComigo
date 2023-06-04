@@ -12,7 +12,8 @@ const editAccountSchema = z.object({
     amount: z.number().positive(),
     comments: z.string()
     .max(255, 'Comments must contain a maximum of 255 characters')
-    .nullable()
+    .nullable(),
+    status_id: z.number().positive()
 });
 
 export {editAccountSchema}

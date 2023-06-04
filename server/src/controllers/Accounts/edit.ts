@@ -25,6 +25,7 @@ const edit = async (req: Request, res: Response): Promise<Response> => {
                         amount: account.amount,
                         expiration: formatDate(account.expiration),
                         comments: account.comments,
+                        status_id: account.status_id
                       },
                 })
             ]);

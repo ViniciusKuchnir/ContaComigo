@@ -22,7 +22,7 @@ const BillsToPay = () => {
 
   useEffect(() => {
     setLoading(true);
-      api.get(`/accounts/${user.id}`)
+      api.get(`/accounts/${user.id}/2`)
     .then(({data}) => {
       setAccounts(data);
     })
@@ -39,9 +39,10 @@ const BillsToPay = () => {
       <C.List>
         {
           accountsFiltered.map(item => {
-            if (item.status_id === 2) {
               return (
-                <CardAccount 
+                <CardAccount
+                  typeAccount={2} 
+                  forPaid={true}
                   key={item.id}
                   id={item.id}
                   name={item.name}
@@ -52,7 +53,6 @@ const BillsToPay = () => {
                   comments={item.comments}
                 />
               )
-            }
           })
         }
       </C.List>

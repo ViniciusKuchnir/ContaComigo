@@ -7,7 +7,7 @@ import { z } from "zod";
 
 const get = async (req: Request, res: Response): Promise<Response> => {
     try {
-        const {userId, accountId} = req.params;
+        const {userId, statusId, accountId} = req.params;
         try {
            const accounts = await prisma.bill.findMany({
                 include:{
@@ -15,6 +15,7 @@ const get = async (req: Request, res: Response): Promise<Response> => {
                 },
                 where: {
                     id: accountId === undefined ? {} : Number.parseInt(accountId),
+                    status_id: Number.parseInt(statusId),
                     user_id: Number.parseInt(userId)
                     
                 }

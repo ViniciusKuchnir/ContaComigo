@@ -26,7 +26,7 @@ const NavigationBar = () => {
             <MdOutlineWallet />
             <span>Bills to pay</span>
         </C.ItemMenu>
-        <C.ItemMenu to='#'>
+        <C.ItemMenu to='/bills-to-receive'>
             <MdOutlineAttachMoney />
             <span>Bills to receive</span>
         </C.ItemMenu>
