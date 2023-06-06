@@ -63,7 +63,7 @@ const BillsToReceive = () => {
 
   return (
     <Layout 
-        title='Bills to receive'
+        title='Bills already paid'
         subtitle='Check your paid bills here'
     >
         <TextSearch 
