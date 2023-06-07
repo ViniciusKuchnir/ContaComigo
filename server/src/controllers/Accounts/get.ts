@@ -10,7 +10,11 @@ const get = async (req: Request, res: Response): Promise<Response> => {
         const {userId, statusId, accountId} = req.params;
         try {
            const accounts = await prisma.bill.findMany({
-                include:{
+            orderBy: [
+                {expiration: 'asc'},
+                {name: 'asc'}
+            ],    
+            include:{
                     type_bill: true
                 },
                 where: {
