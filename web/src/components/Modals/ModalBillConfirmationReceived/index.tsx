@@ -1,16 +1,15 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react';
 import * as C from './styles';
 import GenericModal from '../GenericModal'
-import PrimaryButton from '../../Buttons/Primary';
-import SecondaryButton from '../../Buttons/Secondary';
-import { api } from '../../../services/api';
+import { useForm } from 'react-hook-form';
 import { getUser } from '../../../libs/user';
 import { User } from '../../../types/user';
-import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
+import { api } from '../../../services/api';
+import SecondaryButton from '../../Buttons/Secondary';
+import PrimaryButton from '../../Buttons/Primary';
 import { toast } from 'react-toastify';
-import { useNavigate } from 'react-router-dom';
 
 type Props = {
     id: number;
@@ -60,9 +59,8 @@ const billToPayFormSchema = z.object({
 
 type BillToPayFormData = z.infer<typeof billToPayFormSchema>;
 
+const ModalBillConfirmationReceived = ({id, showModal, setShowModal}: Props) => {
 
-const ModalBillConfirmationPaid = ({id, showModal, setShowModal}: Props) => {
-  
     const [loading, setLoading] = useState<boolean>(false);
 
     const user = getUser() as User;
@@ -76,7 +74,7 @@ const ModalBillConfirmationPaid = ({id, showModal, setShowModal}: Props) => {
       });
 
       useEffect(() => {
-        api.get(`/accounts/${user.id}/2/${id}`)
+        api.get(`/accounts/${user.id}/3/${id}`)
         .then(({data}) => {
           setValue('id', data[0].id);
           setValue('name', data[0].name);
@@ -96,7 +94,7 @@ const ModalBillConfirmationPaid = ({id, showModal, setShowModal}: Props) => {
       }, []);
 
 
-    const confirmPayment = async (data: BillToPayFormData) => {
+      const confirmReceived = async (data: BillToPayFormData) => {
         setLoading(true);
         await api.patch(`/accounts/${data.id}`, {
             name: data.name,
@@ -105,28 +103,21 @@ const ModalBillConfirmationPaid = ({id, showModal, setShowModal}: Props) => {
             expiration: data.expiration,
             amount: data.amount,
             comments: data.comments,
-            status_id: 1
+            status_id: 4
           }).then(response => {
             toast.success('Changed account status')
-           
           }).catch(error => {
             toast.error(error);
           }).finally(() => {
             setLoading(false);
             setShowModal(false);
           })
-    }
+      }
 
-    return (
-    <GenericModal title='Confirm payment?' showModal={showModal} setShowModal={setShowModal}>
-        <form onSubmit={handleSubmit(confirmPayment)}>
-            <C.Text>Are you sure you want to confirm payment for this account? This action is irreversible.</C.Text>
-            {errors.amount && errors.amount?.message}
-            {errors.beneficiary_name && errors.beneficiary_name?.message}
-            {errors.comments && errors.comments?.message}
-            {errors.expiration && errors.expiration?.message}
-            {errors.name && errors.name?.message}
-            {errors.status_id && errors.status_id?.message}
+  return (
+    <GenericModal title='Confirm received?' showModal={showModal} setShowModal={setShowModal}>
+        <form onSubmit={handleSubmit(confirmReceived)}>
+            <C.Text>Are you sure you've already received payment for this bill? This action is irreversible.</C.Text>
             <C.Buttons>
                 <SecondaryButton type='button' onClick={() => setShowModal(false)}>Cancel</SecondaryButton>
                 <PrimaryButton type='submit' loading={loading}>Confirm</PrimaryButton>
@@ -136,4 +127,4 @@ const ModalBillConfirmationPaid = ({id, showModal, setShowModal}: Props) => {
   )
 }
 
-export default ModalBillConfirmationPaid
+export default ModalBillConfirmationReceived

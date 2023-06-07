@@ -2,13 +2,14 @@ import React, { useContext, useEffect, useRef } from 'react';
 import * as C from './styles';
 import { 
     MdOutlineDashboard, 
-    MdOutlineAccountBalanceWallet as MdOutlineWallet,
     MdOutlineAttachMoney,
     MdPlaylistAddCheck,
     MdSettings,
     MdOutlinePerson,
     MdOutlineSupportAgent,
-    MdOutlineExitToApp
+    MdOutlineExitToApp,
+    MdArrowCircleRight,
+    MdArrowCircleLeft
 } from 'react-icons/md';
 import { ContextUser, User } from '../../../types/user';
 import { UserContext } from '../../../contexts/user';
@@ -23,12 +24,16 @@ const NavigationBar = () => {
             <span>Dashboard</span>
         </C.ItemMenu>
         <C.ItemMenu to='/bills-to-pay'>
-            <MdOutlineWallet />
+            <MdArrowCircleRight />
             <span>Bills to pay</span>
         </C.ItemMenu>
         <C.ItemMenu to='/bills-already-paid'>
             <MdOutlineAttachMoney />
             <span>Already paid</span>
+        </C.ItemMenu>
+        <C.ItemMenu to='/bills-to-receivable'>
+            <MdArrowCircleLeft />
+            <span>Bill to receivable</span>
         </C.ItemMenu>
         <C.ItemMenu to='#'>
             <MdPlaylistAddCheck />

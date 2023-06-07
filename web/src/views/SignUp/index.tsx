@@ -20,7 +20,8 @@ import { toast } from 'react-toastify';
 const createUserFormSchema = z
   .object({
     name: z.string()
-      .min(2, 'The confirmation password must contain at least 2 characters')
+      .min(2, 'The name must contain at least 2 characters')
+      .max(30, 'The name must contain a maximum of 30 characters')
       .nonempty('Name is required')
       .transform(name => { //Capitalize
         return name.trim().split(' ').map(word => {
@@ -30,6 +31,7 @@ const createUserFormSchema = z
     surname: z
       .string()
       .min(2, 'The confirmation password must contain at least 2 characters')
+      .max(60, 'The name must contain a maximum of 60 characters')
       .nonempty('Surname is required')
       .transform(name => { //Capitalize
         return name.trim().split(' ').map(word => {
