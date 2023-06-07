@@ -12,7 +12,7 @@ const MessagesAccountsType: IMessages = {
     },
     deleted: {
         message: 'Account type deleted successfully',
-        code: 204
+        code: 200
     },
     found:{
         message: 'Account type found successfully',

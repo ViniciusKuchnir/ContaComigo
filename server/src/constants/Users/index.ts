@@ -11,7 +11,7 @@ const MessagesUser: IMessages = {
     },
     deleted: {
         message: 'User deleted successfully',
-        code: 204
+        code: 200
     },
     found:{
         message: 'User found successfully',

@@ -11,7 +11,7 @@ const MessageAccounts: IMessages = {
     },
     deleted: {
         message: 'Account deleted successfully',
-        code: 204
+        code: 200
     },
     found:{
         message: 'Account found successfully',

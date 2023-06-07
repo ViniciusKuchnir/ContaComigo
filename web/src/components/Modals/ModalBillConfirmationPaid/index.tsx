@@ -123,7 +123,7 @@ const ModalBillConfirmationPaid = ({id, showModal, setShowModal}: Props) => {
         <form onSubmit={handleSubmit(confirmPayment)}>
             <C.Text>Are you sure you want to confirm payment for this account? This action is irreversible.</C.Text>
             <C.Buttons>
-                <SecondaryButton type='button' >Cancel</SecondaryButton>
+                <SecondaryButton type='button' onClick={() => setShowModal(false)}>Cancel</SecondaryButton>
                 <PrimaryButton type='submit' loading={loading}>Confirm</PrimaryButton>
             </C.Buttons>
         </form>

@@ -15,6 +15,7 @@ import { toast } from 'react-toastify';
 import { Options } from '../../../types/OptionSelect';
 import { getUser } from '../../../libs/user';
 import { User } from '../../../types/user';
+import ModalBillConfirmationDelete from '../ModalBillConfirmationDelete';
 
 type Props = {
     id: number;
@@ -73,6 +74,7 @@ const ModalBillEdited = ({id, typeAccount, setShowModal, showModal}: Props) => {
     
     const [accountTypes, setAccountTypes] = useState<[] | Options[]>([]);
     const [edition, setEdition] = useState<boolean>(false);
+    const [deleted, setDeleted] = useState<boolean>(false);
 
     const user = getUser() as User;
 
@@ -136,84 +138,94 @@ const ModalBillEdited = ({id, typeAccount, setShowModal, showModal}: Props) => {
       }
 
     return (
-    <GenericModal title='Edit account' setShowModal={setShowModal} showModal={showModal}>
+    <>
+      <GenericModal title='Edit account' setShowModal={setShowModal} showModal={showModal}>
         <form>
-        <TextField
-          id='account-name' 
-          type='text'
-          label='Account name'
-          placeholder='Eg.: Water bill'
-          required={true}
-          register={register('name')}
-          error={errors.name && errors.name.message}
-          readOnly={!edition}
-        />
-        <TextField 
-          id='beneficiary-name'
-          type='text'
-          label='Beneficiary name'
-          placeholder='Eg.: Watersource Inc.'
-          required={true}
-          register={register('beneficiary_name')}
-          error={errors.beneficiary_name && errors.beneficiary_name.message}
-          readOnly={!edition}
-        />
-        
-        <Select 
-          id='type-bill'
-          options={accountTypes}
-          label='Type bill'
-          placeholder='Chose type bill'
-          error={errors.type_bill  && errors.type_bill.message}
-          register={register('type_bill')}
-          required={true}
-          readOnly={!edition}
-        />
-        <TextField 
-          id='expiration-date'
-          type='date'
-          label='Expiration date'
-          placeholder={`E.g.: ${currentDate}`}
-          required={false}
-          register={register('expiration')}
-          error={errors.expiration && errors.expiration.message}
-          readOnly={!edition}
-        />
-        <TextField 
-          id='amount'
-          type='number'
-          label='Amount'
-          placeholder='E.g.: $43.55'
-          required={true}
-          register={register('amount')}
-          step='0.01'
-          error={errors.amount && errors.amount.message}
-          readOnly={!edition}
-        />
-        <Textarea 
-          id='comments'
-          label='Comments'
-          placeholder='Write any comments you want here'
-          register={register('comments')}
-          required={false}
-          maxLength={255}
-          error={errors.comments && errors.comments.message}
-          readOnly={!edition}
-        />
-        <C.Buttons>
-          <SecondaryButton onClick={() => setShowModal(false)}>
-            {edition ? 'Cancel' : 'Close'}
-          </SecondaryButton>
-
+          <TextField
+            id='account-name' 
+            type='text'
+            label='Account name'
+            placeholder='Eg.: Water bill'
+            required={true}
+            register={register('name')}
+            error={errors.name && errors.name.message}
+            readOnly={!edition}
+          />
+          <TextField 
+            id='beneficiary-name'
+            type='text'
+            label='Beneficiary name'
+            placeholder='Eg.: Watersource Inc.'
+            required={true}
+            register={register('beneficiary_name')}
+            error={errors.beneficiary_name && errors.beneficiary_name.message}
+            readOnly={!edition}
+          />
           
-          {edition ? 
-            <PrimaryButton type='button' loading={false} onClick={handleSubmit(sendForm)}>Confirm</PrimaryButton>
-          : 
-            <PrimaryButton type='button' onClick={() => setEdition(true)} loading={false}>Edit account</PrimaryButton>
+          <Select 
+            id='type-bill'
+            options={accountTypes}
+            label='Type bill'
+            placeholder='Chose type bill'
+            error={errors.type_bill  && errors.type_bill.message}
+            register={register('type_bill')}
+            required={true}
+            readOnly={!edition}
+          />
+          <TextField 
+            id='expiration-date'
+            type='date'
+            label='Expiration date'
+            placeholder={`E.g.: ${currentDate}`}
+            required={false}
+            register={register('expiration')}
+            error={errors.expiration && errors.expiration.message}
+            readOnly={!edition}
+          />
+          <TextField 
+            id='amount'
+            type='number'
+            label='Amount'
+            placeholder='E.g.: $43.55'
+            required={true}
+            register={register('amount')}
+            step='0.01'
+            error={errors.amount && errors.amount.message}
+            readOnly={!edition}
+          />
+          <Textarea 
+            id='comments'
+            label='Comments'
+            placeholder='Write any comments you want here'
+            register={register('comments')}
+            required={false}
+            maxLength={255}
+            error={errors.comments && errors.comments.message}
+            readOnly={!edition}
+          />
+          <C.Buttons>
+            <SecondaryButton onClick={() => setShowModal(false)}>
+              {edition ? 'Cancel' : 'Close'}
+            </SecondaryButton>
+
+            
+            {edition ? 
+              <PrimaryButton type='button' loading={false} onClick={handleSubmit(sendForm)}>Confirm</PrimaryButton>
+            : 
+              <PrimaryButton type='button' onClick={() => setEdition(true)} loading={false}>Edit account</PrimaryButton>
+            }
+          </C.Buttons>
+          <PrimaryButton type='button' danger={true} loading={false} onClick={() => setDeleted(true)}>Delete bill</PrimaryButton>
+        </form>
+      </GenericModal>
+          {
+            deleted && <ModalBillConfirmationDelete 
+              id={id}
+              setShowModal={setDeleted}
+              showModal={deleted}
+            />
           }
-        </C.Buttons>
-      </form>
-    </GenericModal>
+    </>
   )
 }
 

@@ -17,7 +17,7 @@ interface IMessages {
     };
     deleted: {
         message: string;
-        code: 204
+        code: 200
     };
     alreadyExist: {
         message: string;

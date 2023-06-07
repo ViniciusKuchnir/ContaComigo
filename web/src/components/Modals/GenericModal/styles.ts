@@ -20,6 +20,7 @@ export const Container = styled.div`
     right: 0;
     bottom: 0;
     z-index: 2;
+    padding: 100px;
     background-color: rgba(0, 0, 0, 0.5);
     display: flex;
     align-items: center;
@@ -32,6 +33,7 @@ export const Content = styled.div`
     height: max-content;
     padding: ${({theme}) => theme.size.big};
     border-radius: ${({theme}) => theme.size.big};
+    padding: 12px;
     animation: ${topToBottom} .3s ease-in-out; 
 `;
 
