@@ -9,7 +9,11 @@ type DataAccountTypeSchema = z.infer<typeof getAllSchema>;
 
 const getAll = async (req: Request, res: Response): Promise<Response> => {
     try {
-        const accountTypes: DataAccountTypeSchema[] = await prisma.type_Bill.findMany();
+        const accountTypes: DataAccountTypeSchema[] = await prisma.type_Bill.findMany({
+            orderBy:[
+                {type: 'asc'}
+            ]
+        });
         return res
         .status(MessagesAccountsType.found.code)
         .send(accountTypes);
