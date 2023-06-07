@@ -84,6 +84,7 @@ const Cadastro = () => {
     })
     .finally(() => {
       setLoading(false);
+      navigate('/signin');
     })
   }
 
