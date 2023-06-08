@@ -15,5 +15,5 @@ export {
     NotFound, 
     BillsAlreadyPaid, 
     BillsToReceivable,
-    BillsReceived
+    BillsReceived,
 };

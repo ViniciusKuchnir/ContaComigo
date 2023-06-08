@@ -38,7 +38,7 @@ const BillsReceived = () => {
               accountsFiltered.map(item => {
                   return (
                     <CardAccount 
-                      typeAccount={1}
+                        typeAccount={4}
                         forPaid={false}
                         key={item.id}
                         id={item.id}

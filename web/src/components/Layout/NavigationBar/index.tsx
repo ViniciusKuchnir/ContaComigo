@@ -3,10 +3,7 @@ import * as C from './styles';
 import { 
     MdOutlineDashboard, 
     MdOutlineAttachMoney,
-    MdPlaylistAddCheck,
-    MdSettings,
     MdOutlinePerson,
-    MdOutlineSupportAgent,
     MdOutlineExitToApp,
     MdArrowCircleRight,
     MdArrowCircleLeft,
@@ -42,20 +39,8 @@ const NavigationBar = () => {
             <span>Bill received</span>
         </C.ItemMenu>
         <C.ItemMenu to='#'>
-            <MdPlaylistAddCheck />
-            <span>Goals</span>
-        </C.ItemMenu>
-        <C.ItemMenu to='#'>
-            <MdSettings />
-            <span>Settings</span>
-        </C.ItemMenu>
-        <C.ItemMenu to='#'>
             <MdOutlinePerson />
             <span>Perfil</span>
-        </C.ItemMenu>
-        <C.ItemMenu to='#'>
-            <MdOutlineSupportAgent />
-            <span>Support</span>
         </C.ItemMenu>
         <C.ItemMenu onClick={() => SignOut()} to='#'>
             <MdOutlineExitToApp />
