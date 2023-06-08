@@ -18,7 +18,7 @@ export const Content = styled.div`
 `;
 
 export const Image = styled(Player)`
-    height: 380px;
+    height: 420px;
     border: 2px solid ${({theme}) => theme.gray};
     border-radius: ${({theme}) => theme.size.medium};
     padding: ${({theme}) => theme.size.big};

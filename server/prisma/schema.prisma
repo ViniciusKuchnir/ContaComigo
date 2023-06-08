@@ -29,7 +29,7 @@ model Goal {
   date      DateTime? @db.Date
   completed Boolean   @default(false) @db.Bit(1)
   createdAt DateTime  @default(now())
-  user      User      @relation(fields: [user_id], references: [id])
+  user      User      @relation(fields: [user_id], references: [id], onDelete: Cascade)
 
   @@map("goals")
 }
@@ -63,7 +63,7 @@ model Bill {
   amount           Decimal   @db.Decimal(10, 2)
   comments         String?   @db.VarChar(255)
   createdAt        DateTime  @default(now())
-  user             User      @relation(fields: [user_id], references: [id])
+  user             User      @relation(fields: [user_id], references: [id], onDelete: Cascade)
   status           Status    @relation(fields: [status_id], references: [id])
   type_bill        Type_Bill @relation(fields: [type_bill_id], references: [id])
 

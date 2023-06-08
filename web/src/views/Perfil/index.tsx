@@ -12,6 +12,7 @@ import { api } from '../../services/api';
 import SecondaryButton from '../../components/Buttons/Secondary';
 import PrimaryButton from '../../components/Buttons/Primary';
 import { toast } from 'react-toastify';
+import ModalPerfilConfirmationDelete from '../../components/Modals/ModalPerfilConfirmationDelete';
 
 const editUserFormSchema = z
   .object({
@@ -54,6 +55,7 @@ const Perfil = () => {
   
     const [edition, setEdition] = useState<boolean>(false);
     const [loading, setLoading] = useState<boolean>(false);
+    const [showModalDeleted, setShowModalDeleted] = useState<boolean>(false);
 
     const {
         register, 
@@ -165,8 +167,20 @@ const Perfil = () => {
                             <PrimaryButton type='button' onClick={() => setEdition(true)} loading={false}>Edit account</PrimaryButton>
                         }
                     </C.Buttons> 
-                    
+                    <PrimaryButton 
+                        type='button' 
+                        loading={loading} 
+                        danger={true}
+                        onClick={() => setShowModalDeleted(!showModalDeleted)}
+                    >
+                        Delete perfil
+                    </PrimaryButton>  
                 </form>
+                {showModalDeleted && <ModalPerfilConfirmationDelete 
+                    id={user.id}
+                    showModal={showModalDeleted}
+                    setShowModal={setShowModalDeleted}
+                />}
             </C.Content>
         </C.Container>
     </Layout>
