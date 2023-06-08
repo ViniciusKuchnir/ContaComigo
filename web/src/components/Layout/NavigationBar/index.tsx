@@ -9,8 +9,10 @@ import {
     MdOutlineSupportAgent,
     MdOutlineExitToApp,
     MdArrowCircleRight,
-    MdArrowCircleLeft
+    MdArrowCircleLeft,
+    
 } from 'react-icons/md';
+import { GiReceiveMoney } from 'react-icons/gi';
 import { ContextUser, User } from '../../../types/user';
 import { UserContext } from '../../../contexts/user';
 
@@ -34,6 +36,10 @@ const NavigationBar = () => {
         <C.ItemMenu to='/bills-to-receivable'>
             <MdArrowCircleLeft />
             <span>Bill to receivable</span>
+        </C.ItemMenu>
+        <C.ItemMenu to='/bills-received'>
+            <GiReceiveMoney />
+            <span>Bill received</span>
         </C.ItemMenu>
         <C.ItemMenu to='#'>
             <MdPlaylistAddCheck />
