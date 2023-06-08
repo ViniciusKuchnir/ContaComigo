@@ -38,7 +38,7 @@ const NavigationBar = () => {
             <GiReceiveMoney />
             <span>Bill received</span>
         </C.ItemMenu>
-        <C.ItemMenu to='#'>
+        <C.ItemMenu to='/perfil'>
             <MdOutlinePerson />
             <span>Perfil</span>
         </C.ItemMenu>

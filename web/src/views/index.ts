@@ -5,6 +5,7 @@ import BillsPay from './BillsToPay';
 import BillsAlreadyPaid from './BillsAlreadyPaid';
 import BillsToReceivable from './BillsToReceivable';
 import BillsReceived from './BillsReceived';
+import Perfil from './Perfil';
 import NotFound from './NotFound';
 
 export {
@@ -16,4 +17,5 @@ export {
     BillsAlreadyPaid, 
     BillsToReceivable,
     BillsReceived,
+    Perfil
 };
