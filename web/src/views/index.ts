@@ -6,6 +6,7 @@ import BillsAlreadyPaid from './BillsAlreadyPaid';
 import BillsToReceivable from './BillsToReceivable';
 import BillsReceived from './BillsReceived';
 import Perfil from './Perfil';
+import ForgotPassword from './ForgotPassword';
 import NotFound from './NotFound';
 
 export {
@@ -17,5 +18,6 @@ export {
     BillsAlreadyPaid, 
     BillsToReceivable,
     BillsReceived,
-    Perfil
+    Perfil,
+    ForgotPassword
 };

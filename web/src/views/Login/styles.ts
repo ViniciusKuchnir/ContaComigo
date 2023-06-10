@@ -22,6 +22,12 @@ export const Form = styled.form`
     }
 `;
 
+export const ForgotPassword = styled.div`
+    width: 100%;
+    display: flex;
+    justify-content: end;
+`;
+
 export const Buttons = styled.div`
     display: flex;
     flex-direction: column;

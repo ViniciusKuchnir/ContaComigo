@@ -9,7 +9,8 @@ import {
   BillsAlreadyPaid, 
   BillsToReceivable, 
   BillsReceived,
-  Perfil
+  Perfil,
+  ForgotPassword
 
 } from '../views';
 import { BrowserRouter } from 'react-router-dom';
@@ -21,6 +22,8 @@ const RouteNavigators = () => {
         <Routes>
             <Route path='/signup' element={<Cadastro />} />
             <Route path='/signin' element={<Login />} />
+            <Route path='/forgot-password' element={<ForgotPassword />} />
+            
             
             <Route path='/' element={<PrivateRoutes />}>
               <Route path='dashboard' element={<Dashboard />} />

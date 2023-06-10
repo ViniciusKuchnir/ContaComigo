@@ -98,6 +98,9 @@ const Login = () => {
                     register={register('password')}
                     error={errors.password && errors.password.message}
                 />
+                <C.ForgotPassword>
+                  <TertiaryButton onClick={() => navigate('/forgot-password')}>Forgot your password?</TertiaryButton>
+                </C.ForgotPassword>
             </div>
             <C.Buttons>
               <PrimaryButton type='submit' loading={false}>

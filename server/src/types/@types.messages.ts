@@ -36,4 +36,15 @@ interface IServer{
     }
 }
 
-export {IMessages, IServer};
+interface IEmail {
+    error: {
+        message: string;
+        code: 400
+    },
+    success: {
+        message: string;
+        code: 200
+    }
+}
+
+export {IMessages, IServer, IEmail};
