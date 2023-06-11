@@ -9,6 +9,7 @@ declare module 'styled-components'{
         purpleDark: string;
         yellow: string;
         red: string;
+        green: string;
         white: string;
         size:{
             small: string;
@@ -27,6 +28,7 @@ export const lightTheme: DefaultTheme = {
     gray: '#C2BEA9',
     yellow: '#F8E007',
     red: '#EA2323',
+    green: '#2ECC71',
     white: '#FFFFFF',
     size: {
         small: '4px',
@@ -44,6 +46,7 @@ export const darkTheme: DefaultTheme = {
     gray: '#C2BEA9',
     yellow: '#F8E007',
     red: '#EA2323',
+    green: '#27AE60',
     white: '#FFFFFF',
     size: {
         small: '4px',
