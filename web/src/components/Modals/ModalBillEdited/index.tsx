@@ -139,7 +139,7 @@ const ModalBillEdited = ({id, typeAccount, setShowModal, showModal}: Props) => {
 
     return (
     <>
-      <GenericModal title='Edit account' setShowModal={setShowModal} showModal={showModal}>
+      <GenericModal title={edition ? 'Edit account' : 'View account'} setShowModal={setShowModal} showModal={showModal}>
         <form>
           <TextField
             id='account-name' 
